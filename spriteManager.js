@@ -4,27 +4,27 @@ spriteManager(src , maxFrame , xMarg, yMarg, width, height) :
 	maxFrame : number of frame to animate
 	xMarg,yMarg : Margins on the sprite if any
 	width,height : frame size
+	timePerFrame : ms between each frame
 */
-
-function spriteManager(src , maxFrame , xMarg, yMarg, width, height) 
+function spriteManager(src , maxFrame , xMarg, yMarg, width, height, timePerFrame) 
 {
     'use strict';
 	this.img = new Image();
-	this.img.src = 'img/HappyF.png';
+	this.img.src = src;
 	
-	this.numberOfImages = 6;
-	this.xMargin = 15;   // x and y of the current image on the sprite
-	this.yMargin = 20;
+	this.numberOfImages = maxFrame;
+	this.xMargin = xMarg;   // x and y of the current image on the sprite
+	this.yMargin = yMarg;
 	
-	this.w = 55;
-	this.h = 50;
+	this.w = width;
+	this.h = height;
 	
 	
 	this.frame = 0;
 	this.lastUpdateTime = 0;
 	this.Delta = 0;
 	this.acDelta = 0;
-	this.msPerFrame = 5;
+	this.msPerFrame = timePerFrame;
 	
 	this.xPos = 0;
 	this.yPos = this.yMargin + (this.frame * this.h);
@@ -32,11 +32,25 @@ function spriteManager(src , maxFrame , xMarg, yMarg, width, height)
 };
 
 spriteManager.prototype.setSprite = function(context) {
- 
+	
 };
 
-Happy.prototype.update = function(){	
-  
+spriteManager.prototype.update = function(){
+	this.delta = Date.now() - this.lastUpdateTime;
+    if (this.acDelta > this.msPerFrame)
+    {
+        this.acDelta = 0;
+        this.xPos = this.xMargin + (this.frame * this.w);  // update sprite animation
+        this.frame++;
+        if (this.frame >= this.numberOfImages) 
+			this.frame = 0;
+    } 
+	else
+    {
+        this.acDelta += this.delta;
+    }
+    this.lastUpdateTime = Date.now();
+		
 };
 
 

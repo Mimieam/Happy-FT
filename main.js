@@ -23,6 +23,8 @@ var renderStats = new Stats();
    //Add Happy the hero :D
    Game.addHero();
    
+   Game.addFish();
+   
    Game.addEventListener();
    
    

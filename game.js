@@ -42,3 +42,6 @@ Game.addHero = function() {
     this.CurrentHero = this.Hero[0];
 };
 
+Game.addFish = function() {
+  Game.entities.push(new Fish());
+};
