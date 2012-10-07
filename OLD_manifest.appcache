@@ -1,0 +1,20 @@
+CACHE MANIFEST
+
+# version 4
+
+CACHE:
+InputManager.js
+keyBoardManager.js
+spriteManager.js
+game.js
+stats.js
+cloud.js
+Happy.js
+main.js
+
+
+img/happyF.png
+img/fishF.png
+
+favicon.ico
+Happy-FT.html
