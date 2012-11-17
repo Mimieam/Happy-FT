@@ -60,8 +60,10 @@ SpriteDB = (function ()
 		  { x: 115,   y: 0, w: 40, h: 40, length: 160 },
           { x: 155,  y: 0, w: 40, h: 40, length: 160 },
           { x: 195,  y: 0, w: 40, h: 40, length: 160 }
-		]
-	/*this.base['Happy_FORWARD']  */
+        ]
+         
+		
+	/*this.base['Fish']  */
 });
 
 

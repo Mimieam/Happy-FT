@@ -23,35 +23,46 @@ var StartNow = function(){
    //Add Happy the hero :D
    Game.addHero();
    
-  /*  i = 5;
-    while (i--)  Game.addFish();
- */	i=3
-    while (i--)  Game.addEnemy();
+    i = 20;
+    while (i--)  Game.addFish();   // Add some fishes
+    
+ 	i=3
+    while (i--)  Game.addEnemy();  // and some bees
   
    
    Game.addEventListener();
    
-   
-   
-   Game.run = (function() {  // mainLOOP
+ 
+   Game.run = (function() {  // mainLOOP    
      var loops = 0, skipTicks = 1000 / Game.fps,
          maxFrameSkip = 10,
          nextGameTick = (new Date).getTime();
-
+     
+   
      return function() {
-       loops = 0;
-
-       while ((new Date).getTime() > nextGameTick) {
-         updateStats.update();
-		// Game.checkCollision();
-         Game.update();
-         nextGameTick += skipTicks;
-         loops++;
-       }
-
-       renderStats.update();
-       Game.draw();
+    if (Game.isPaused == false ){  
+           loops = 0;
+         
+           while ((new Date).getTime() > nextGameTick) {
+               
+              
+             updateStats.update();
+        	// Game.checkCollision();
+             Game.update();
+             nextGameTick += skipTicks;
+             loops++;
+                 }
+             
+          
+    
+           renderStats.update();
+           Game.draw();
+              
+         
+    } 
      };
+  
+     
    })();
 
  
@@ -75,8 +86,11 @@ var StartNow = function(){
      
      window.onEachFrame = onEachFrame;
    })();
-
- onEachFrame(Game.run);	
-
+  
+          onEachFrame(Game.run);
+         
 
 };
+
+
+

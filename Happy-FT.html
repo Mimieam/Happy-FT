@@ -18,18 +18,25 @@
 	  }
 	  </style>
    <!--  <link rel="stylesheet" href="style.css" type="text/css"charset="utf-8" /> -->
-    <script type="text/javascript" charset="utf-8" src="js/InputManager.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script> 
+   
+   
+    <script type="text/javascript" charset="utf-8" src="js/InputManager.js"></script>    
+    <script type="text/javascript" charset="utf-8" src="js/TouchEvManager.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/keyBoardManager.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/spriteManager.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/coldwall.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/enemies.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/game.js"></script>
+    
+     <script type="text/javascript" charset="utf-8" src="js/jgestures.min.js"></script> 
+    
     <script type="text/javascript" charset="utf-8" src="js/stats.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/cloud.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/fish.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/Happy.js"></script> 
     <script type="text/javascript" charset="utf-8" src="js/main.js"></script>
-   
+
    <script type="text/javascript" charset="utf-8" src="js/player.js"></script>
 <!--     <script type="text/javascript" charset="utf-8" src="js/NewSpriteManager.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/Frames.js"></script> -->
@@ -38,7 +45,8 @@
 
   </head>
   <body onload= "StartNow()" >
-     <canvas id="viewport" height="650" width="1000"></canvas> 
+     <canvas id="viewport" class = "viewport" height="650" width="1000"></canvas> 
+     <div id = "Instruction"> use arrows to move and 'A' to charge forward, ESC to pause <div>
     <!-- <canvas id="viewport" height="600" width="500"></canvas> -->
   </body>
 </html>

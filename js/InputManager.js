@@ -6,6 +6,7 @@
 	this.LEFT = false;
 	this.RIGHT = false;
 	this.NOINPUT = true;
+    this.PAUSED = false;
 	
 	this.addToX = 0;
 	this.addToY = 0;
@@ -21,9 +22,16 @@
 InputManager.prototype.reset = function() {
 	this.addToX = 0;
 	this.addToY = 0;
+    this.PAUSED = false;
 };
 
-
+InputManager.prototype.paused = function() { //state = true or false
+    if ( true == this.PAUSED )
+        return this.PAUSED = false;
+    else 
+        return this.PAUSED = true;
+    
+};
 
 InputManager.prototype.moveLeft = function(xPos) {
   this.addToX -= xPos;
@@ -94,7 +102,7 @@ InputManager.prototype.updatePos = function(Pos) {
   if (this.keyBoard.isDown(this.keyBoard.Controller.DOWN)) this.moveDown(Pos);
   if (this.keyBoard.isDown(this.keyBoard.Controller.RIGHT)) this.moveRight(Pos);
   if (this.keyBoard.isDown(this.keyBoard.Controller.A)&&!this.alreadyPressed) {this.chargeForward(Pos); this.animCount--;};
-
+ // if (this.keyBoard.isDown(this.keyBoard.Controller.PAUSE)) this.paused();
  };
 
 InputManager.prototype.updateXpos = function(x,Pos) 

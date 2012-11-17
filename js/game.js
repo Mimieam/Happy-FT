@@ -11,9 +11,10 @@ Game.initialize = function() {
   this.Hero =[];
   this.CurrentHero;
   this.context = document.getElementById("viewport").getContext("2d");
-  this.collision = new ColDwall();
-  this.spriteDB = new SpriteDB();
+  this.collision = new ColDwall();  // collision detection engine -> will need to be improved later
+  this.spriteDB = new SpriteDB();  // sprite sheet manager
   this.score = 0;
+  this.isPaused = false;
 };
 
 Game.draw = function() {
@@ -44,8 +45,61 @@ Game.update = function() {
 };
 
 Game.addEventListener = function() {
-    window.addEventListener('keyup', function(event) { Game.CurrentHero.Movement.keyBoard.onKeyup(event); }, false);  //ugly ... cloud be better .. Optimize later
-    window.addEventListener('keydown', function(event) { Game.CurrentHero.Movement.keyBoard.onKeydown(event); }, false);
+    window.addEventListener('keyup', function(event) { event.preventDefault(); Game.CurrentHero.Movement.keyBoard.onKeyup(event); }, false);  //ugly ... cloud be better .. Optimize later
+    window.addEventListener('keydown', function(event) { event.preventDefault(); Game.CurrentHero.Movement.keyBoard.onKeydown(event);  }, false);
+  
+   jQuery('#viewport').bind('taptwo',function(event) {   // mobile pausing
+     console.log('test test shake');
+     event.preventDefault();
+   
+        if ( false == Game.isPaused )
+                Game.isPaused = true;       
+        else
+             Game.isPaused = false;      
+         
+    });
+    
+   $(document).keyup(function(e) {
+        e.preventDefault();
+          console.log('esc pressed '+Game.isPaused );
+    if (e.keyCode == 27) {//esc
+        if ( false == Game.isPaused )
+            Game.isPaused = true;       
+    else
+         Game.isPaused = false;      
+      
+     }
+     
+  });
+  
+ jQuery('#viewport').bind('tapone',function(event) {
+     console.log('test test test');
+     event.preventDefault();
+       Game.context.fillStyle = '#ffffff';  // draw the background color
+        Game.context.fillRect(0, 0, Game.context.canvas.width, Game.context.canvas.height);
+        
+         for (var j=0; j < Game.entities.length; j++)  {
+            
+    				Game.entities[j].touchCloud();
+
+            };
+       
+       
+    });
+    
+ jQuery('#viewport').bind('shake',function(event) {
+     console.log('test test shake');
+     event.preventDefault();
+
+         for (var j=0; j < Game.entities.length; j++)  {
+            
+        			Game.entities[j].color = {  one:255,two:255,trois:255};
+
+            };
+       
+       
+    });
+
 };
 
 Game.addCloud = function() {

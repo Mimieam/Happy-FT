@@ -68,7 +68,7 @@ Happy.prototype.chooseAnimation = function() {
 	else if(this.Movement.DOWN)
 	{
 			this.Self.animUpdate = 30;
-		console.log("Debug Moving Down: "+ this.Movement.DOWN);
+	//	console.log("Debug Moving Down: "+ this.Movement.DOWN);
 	}	
 	else if(this.Movement.LEFT == true)
 	{
@@ -80,7 +80,7 @@ Happy.prototype.chooseAnimation = function() {
 	else if(this.Movement.UP == true)
 	{
 			this.Self.animUpdate = 30;
-		console.log("Debug Moving Up: "+ this.Movement.UP);
+		//console.log("Debug Moving Up: "+ this.Movement.UP);
 	}	
 	else if(this.Movement.FORWARDBOOST == true)
 	{

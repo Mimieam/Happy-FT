@@ -63,7 +63,7 @@ Enemy.prototype.update = function(){
 
 Enemy.prototype.touchCloud = function() {
 		console.log("an enemie has been touched");
-		Game.score ++;
+		Game.score --;
 
 			
 	this.x = (Game.context.canvas.width - this.w);

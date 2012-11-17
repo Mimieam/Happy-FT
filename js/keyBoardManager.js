@@ -9,6 +9,7 @@ function KbManager ()
 							 'A': 65,
 						  	 'PAUSE': 16 }; 
 							 
+    this.TouchScreen = new TEvManager()
 };
         
 KbManager.prototype.reset = function ()
