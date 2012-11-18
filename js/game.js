@@ -1,6 +1,6 @@
 var Game = {};
 
-Game.fps = 50;
+Game.fps = 60;
 
 
 
@@ -18,6 +18,9 @@ Game.initialize = function() {
 };
 
 Game.draw = function() {
+        console.log("pause in Game.draw: "+ this.isPaused);
+        if (false == this.isPaused){
+  
   this.context.fillStyle = '#d0e7f9';  // draw the background color
   this.context.fillRect(0, 0, Game.context.canvas.width, Game.context.canvas.height);
   
@@ -29,17 +32,21 @@ Game.draw = function() {
   this.Hero[0].draw(this.context);
   Game.addWave();
   Game.getScore();
-  
+        
+    }
   
 };
 
 Game.update = function() {
-	Game.checkCollision();
-  for (var i=0; i < this.entities.length; i++) {
-    this.entities[i].update();
-  }
-  this.Hero[0].update();
-  
+     console.log("pause in Game.update: "+ this.isPaused);
+    if (false == this.isPaused){
+       
+    	Game.checkCollision();
+      for (var i=0; i < this.entities.length; i++) {
+        this.entities[i].update();
+      }
+      this.Hero[0].update();
+    }
 
 
 };

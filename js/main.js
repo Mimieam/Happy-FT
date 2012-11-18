@@ -23,7 +23,7 @@ var StartNow = function(){
    //Add Happy the hero :D
    Game.addHero();
    
-    i = 20;
+    i = 7;
     while (i--)  Game.addFish();   // Add some fishes
     
  	i=3
@@ -32,39 +32,28 @@ var StartNow = function(){
    
    Game.addEventListener();
    
- 
-   Game.run = (function() {  // mainLOOP    
-     var loops = 0, skipTicks = 1000 / Game.fps,
-         maxFrameSkip = 10,
-         nextGameTick = (new Date).getTime();
-     
-   
-     return function() {
-    if (Game.isPaused == false ){  
-           loops = 0;
-         
-           while ((new Date).getTime() > nextGameTick) {
-               
-              
-             updateStats.update();
-        	// Game.checkCollision();
-             Game.update();
-             nextGameTick += skipTicks;
-             loops++;
-                 }
-             
-          
-    
-           renderStats.update();
-           Game.draw();
-              
-         
-    } 
-     };
-  
-     
-   })();
+Game.run = (function() {
+  var loops = 0, skipTicks = 1000 / Game.fps,
+      maxFrameSkip = 10,
+      nextGameTick = (new Date).getTime(),
+      lastGameTick;
 
+  return function() {
+    loops = 0;
+
+    while ((new Date).getTime() > nextGameTick) {
+      Game.update();
+      nextGameTick += skipTicks;
+      loops++;
+    }
+
+    if (!loops) {
+      Game.draw((nextGameTick - (new Date).getTime()) / skipTicks);
+    } else {
+      Game.draw(0);
+    }
+  };
+})();
  
    (function() {
      var onEachFrame;
@@ -87,7 +76,13 @@ var StartNow = function(){
      window.onEachFrame = onEachFrame;
    })();
   
-          onEachFrame(Game.run);
+  
+     //   if ( true == Game.isPaused )
+         //  setTimeout( function () { onEachFrame(Game.run);   },200);
+       // else     
+             onEachFrame(Game.run); 
+     
+        
          
 
 };
