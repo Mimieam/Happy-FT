@@ -29,6 +29,7 @@ var StartNow = function(){
  	i=3
     while (i--)  Game.addEnemy();  // and some bees
   
+   Game.addFancyController(0, 0); // my spinning controller 
    
    Game.addEventListener();
    

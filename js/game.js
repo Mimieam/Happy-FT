@@ -18,16 +18,22 @@ Game.initialize = function() {
 };
 
 Game.draw = function() {
-        console.log("pause in Game.draw: "+ this.isPaused);
+      //  console.log("pause in Game.draw: "+ this.isPaused);
         if (false == this.isPaused){
   
   this.context.fillStyle = '#d0e7f9';  // draw the background color
   this.context.fillRect(0, 0, Game.context.canvas.width, Game.context.canvas.height);
   
-  for (var i=0; i < this.entities.length; i++) {
+   
+  
+  for (var i=0; i < this.entities.length ; i++) {
     this.entities[i].draw(this.context);
   }
   
+  
+   // this. context.fillStyle = 'rgba(208,231,249,0.05)';
+   // this.context.fillRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+    //this.entities[410].draw(this.context);
 
   this.Hero[0].draw(this.context);
   Game.addWave();
@@ -38,7 +44,7 @@ Game.draw = function() {
 };
 
 Game.update = function() {
-     console.log("pause in Game.update: "+ this.isPaused);
+    // console.log("pause in Game.update: "+ this.isPaused);
     if (false == this.isPaused){
        
     	Game.checkCollision();
@@ -127,9 +133,13 @@ Game.addEnemy = function() {
 };
 
 Game.addWave = function(){
-  this.context.fillStyle = '#1C6BA0';  // draw the sky color
-  this.context.fillRect(0, Game.context.canvas.height - 75, 1000 , 300 );
+//  this.context.fillStyle = '#1C6BA0';  // draw the sky color
+//  this.context.fillRect(0, Game.context.canvas.height - 75, 1000 , 300 );
  	
+}
+
+Game.addFancyController = function(x,y){
+    Game.entities.push(new SpiningController(Game.context.canvas.width, Game.context.canvas.height, x,y));    
 }
 
 

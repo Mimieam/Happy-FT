@@ -112,9 +112,18 @@ Happy.prototype.update = function(){
 		
 			if (this.x < Game.context.canvas.width + this.w) {
 			this.velocity = 1;
-		  } else if (this.x > Game.context.canvas.width + this.w) {
-			this.x  = 0 - this.w ;
+		//  } else if (this.x > Game.context.canvas.width + this.w) {
+		//	this.x  = 0 - this.w ;
+		  }  
+          
+          if (this.x < 0)  {
+    		this.x  = 0 ;
+		  } 
+          
+          if (this.x >  Game.context.canvas.width - this.w) {
+    		this.x  = Game.context.canvas.width - this.w ;
 		  }
+          
 		  this.x = this.Movement.updateXpos(this.x,2);
 		  this.y = this.Movement.updateYpos(this.y,1);
 		  this.Movement.reset();
