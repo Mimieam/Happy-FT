@@ -1,5 +1,6 @@
 function player (img) 
 {
+    'use strict';
 	this.img = img;
 	this.currentAnimation ;
 	

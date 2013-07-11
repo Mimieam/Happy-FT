@@ -3,7 +3,7 @@
 	 * inspired by http://hakim.se/experiments/  - Thank you dude :)
 	 */
 function SpiningController(Sw, Sh , posX, posY) { // we pass the screen width and height and the position  (x, y) we want the controller to be at 
-    
+       'use strict';
     this.SCREEN_WIDTH = Sw;
     this.SCREEN_HEIGHT = Sh;
 	
@@ -14,7 +14,7 @@ function SpiningController(Sw, Sh , posX, posY) { // we pass the screen width an
 	this.RADIUS_SCALE_MAX = 1.5;
 	
 	//The number of particles that are used to generate the trail
-	this.QUANTITY = 25;
+	this.QUANTITY = 45;
 
 	this.canvas;
 	this.context;
@@ -23,8 +23,11 @@ function SpiningController(Sw, Sh , posX, posY) { // we pass the screen width an
 	this.mouseX = this.SCREEN_WIDTH - this.RADIUS ; //(window.innerWidth - this.SCREEN_WIDTH);
 	this.mouseY = this.SCREEN_HEIGHT - this.RADIUS ; //(window.innerHeight - SCREEN_HEIGHT);
     
-    posX = this.mouseX||posX;
-    posY = this.mouseY||posY;
+    var px = posX,
+        py = posY;
+        
+    this.posX = px||this.mouseX;
+    this.posY = py|| this.mouseY;
     
 	this.mouseIsDown = false;
     
@@ -32,11 +35,11 @@ function SpiningController(Sw, Sh , posX, posY) { // we pass the screen width an
 		
 		for (var i = 0; i < this.QUANTITY; i++) {
 			var particle = {
-				position: { x: posX, y: posY },
-				shift: { x: posX, y: posY },
+				position: { x: this.posX, y: this.posY },
+				shift: { x: this.posX, y: this.posY },
 				size: 1,
 				angle: 0,
-				speed: 0.01+Math.random()*0.09,
+				speed: 0.07+Math.random()*0.11,
 				targetSize: 1,
 				fillColor: '#' + (Math.random() * 0x404040 + 0xaaaaaa | 0).toString(16),
 				orbit: this.RADIUS*0.5 + (this.RADIUS * 0.5 * Math.random())
@@ -50,8 +53,8 @@ function SpiningController(Sw, Sh , posX, posY) { // we pass the screen width an
 SpiningController.prototype.draw = function(context) {
     
         // Fade out the lines slowly by drawing a rectangle over the entire canvas
-    //  context.fillStyle = 'rgba(0,0,0,0.05)';
-   	 // context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+      //context.fillStyle = 'rgba(0,0,0,0.05)';
+   	  //context.fillRect(0, 0, context.canvas.width, context.canvas.height);
          
     for (i = 0, len = this.particles.length; i < len; i++) {
     		var particle = this.particles[i];
@@ -62,8 +65,8 @@ SpiningController.prototype.draw = function(context) {
 			particle.angle += particle.speed;
 			
 			// Follow mouse with some lag
-			particle.shift.x += ( this.SCREEN_WIDTH - this.RADIUS - particle.shift.x) * (particle.speed);
-			particle.shift.y += ( this.SCREEN_HEIGHT - this.RADIUS  - particle.shift.y) * (particle.speed);
+			particle.shift.x += ( this.posX - this.RADIUS - particle.shift.x) * (particle.speed);
+			particle.shift.y += ( this.posY - this.RADIUS  - particle.shift.y) * (particle.speed);
           //console.log( mouseX +', '+mouseY )
 			
 			// Apply position
@@ -91,7 +94,7 @@ SpiningController.prototype.draw = function(context) {
 			context.arc(particle.position.x, particle.position.y, particle.size/2, 0, Math.PI*2, true);
 			context.fill();
 		
-		
+	//	 this.mouseInDown = false;
 		}
 };
 
@@ -100,7 +103,8 @@ SpiningController.prototype.update = function() {
 		if( this.mouseIsDown ) {
 			// Scale upward to the max scale
 			this.RADIUS_SCALE += ( this.RADIUS_SCALE_MAX - this.RADIUS_SCALE ) * (0.02);
-            this.mouseInDown = false;
+           //  this.mouseInDown = false;
+           
 		}
 		else {
 			// Scale downward to the min scale
@@ -117,8 +121,10 @@ SpiningController.prototype.update = function() {
 
 
 SpiningController.prototype.touchCloud = function() {
-
-    this.mouseIsDown = true;
+   // if (this.mouseIsDown)
+  //  this.mouseIsDown = false;
+  //  else
+     this.mouseInDown = true;
 };
 
 

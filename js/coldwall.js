@@ -1,5 +1,6 @@
 function ColDwall()  /* ColD Wall collision detection engine*/
 {
+    'use strict';
 	this.collide = false;
 };
 

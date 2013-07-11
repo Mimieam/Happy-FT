@@ -20,7 +20,7 @@ TEvManager.prototype.touchXY = function(e) {
         e = event;
     e.preventDefault();
     this.TLength = e.targetTouches.length;
-    for (i = 0; i < this.TLength; i++) {
+    for (var i = 0; i < this.TLength; i++) {
         console.log("touched")
      //  canX[i] = e.targetTouches[i].pageX - can.offsetLeft;
      //  canY[i] = e.targetTouches[i].pageY - can.offsetTop;

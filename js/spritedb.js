@@ -1,7 +1,7 @@
 //Sprite DB - 
 SpriteDB = (function () 
 {
-    
+    'use strict';
 	this.base = []
 	
 	this.base['Happy_FORWARD'] =[

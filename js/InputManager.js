@@ -1,5 +1,6 @@
  function InputManager ()  
 {
+    'use strict';
 	this.keyBoard =  new KbManager();
 	this.UP = false;
 	this.DOWN = false;
