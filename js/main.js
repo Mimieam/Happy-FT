@@ -4,13 +4,13 @@ var StartNow = function() {
     renderStats.domElement.style.position = 'absolute';
     renderStats.domElement.style.top = '0px';
     renderStats.domElement.style.zIndex = 100;
-    document.body.appendChild(renderStats.domElement);
+    // document.body.appendChild(renderStats.domElement);
 
     var updateStats = new Stats();
     updateStats.domElement.style.position = 'absolute';
     updateStats.domElement.style.top = '50px';
     updateStats.domElement.style.zIndex = 100;
-    document.body.appendChild(updateStats.domElement);
+    // document.body.appendChild(updateStats.domElement);
 
 
 
@@ -53,7 +53,8 @@ var StartNow = function() {
             loops = 0;
             
 
-            while ((new Date).getTime() > nextGameTick) {
+            while ((new Date).getTime() > nextGameTick && !Game.GameIsOver) {
+            // while ((new Date).getTime() > nextGameTick) {
                 Game.update();
                 nextGameTick += skipTicks;
                 loops++;

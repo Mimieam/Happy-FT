@@ -16,6 +16,11 @@ Game.initialize = function() {
   this.spriteDB = new SpriteDB();  // sprite sheet manager
   this.score = 0;
   this.isPaused = false;
+  this.GameIsOver = false;
+};
+
+Game.reset = function(){
+    this.initialize();
 };
 
 Game.draw = function() {
@@ -50,6 +55,7 @@ Game.draw = function() {
              }
              
               Game.getScore();
+              Game.gameover();
         
     }
   
@@ -242,8 +248,33 @@ Game.checkCollision = function(){
 					this.entities[j].touchCloud();
                
               }
-            };
-          };
+            }
+          }
+};
+
+Game.gameover = function(){
+    if(this.score < -20)
+    {
+        
+    if (window.onEachFrame) {
+       window.cancelAnimationFrame(window.onEachFrame);
+               window.onEachFrame = undefined;
+            }
+        
+        console.log('*************************gAME OVER*****************************************');
+        this.context.fillStyle = "black";
+    	this.context.font = "24px Helvetica";
+    	this.context.textAlign = "left";
+    	this.context.textBaseline = "top";
+        this.context.fillText("Game Over : " + this.score, 0, 0);
+        // $('#reset').fadeIn();
+       // this.reset();
+       this.GameIsOver = true;
+        return true;
+    }
+    else 
+        return false;
+    
 };
 
 Game.getScore = function () 

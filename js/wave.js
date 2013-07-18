@@ -58,7 +58,8 @@ function Wave() {
 
 
 Wave.prototype.draw = function(context) {
-    this.drawWave(context);
+    if (!Game.pause)
+        this.drawWave(context);
 };
 
 Wave.prototype.update = function() {
